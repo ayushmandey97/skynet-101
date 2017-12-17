@@ -11,6 +11,9 @@ from sklearn.linear_model import LinearRegression
 from matplotlib import pyplot as plt
 from matplotlib import style
 
+#for serializing python objects
+import pickle
+
 style.use('ggplot')
 
 '''
@@ -59,9 +62,16 @@ x_train, x_test, y_train, y_test = cross_validation.train_test_split(x,y,test_si
 
 t = time()
 #creating and fitting our regression model
-clf = LinearRegression()
+clf = LinearRegression(n_jobs = -1) #to use most number of threads as possible
 clf.fit(x_train, y_train)
-#print("Prediction time: ", round(time() - t,3), "s")
+print("Prediction time: ", round(time() - t,3), "s")
+
+# Pickling for large datasets to avoid time-expensive re-training
+
+# with open('linear_regression.pickle', 'wb') as f:
+# 	pickle.dump(clf, f)
+# pickle_in = open('linear_regression.pickle', 'rb')
+# clf = pickle.load(pickle_in)
 
 accuracy = round((clf.score(x_test, y_test)*100),2)
 print()
