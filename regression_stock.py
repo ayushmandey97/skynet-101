@@ -1,3 +1,9 @@
+'''
+
+This algorithm is trained and tested on a google stock dataset from Quandl, so as to predict the change in adjusted close stock prices of the company's stock
+
+'''
+
 import numpy as np
 import pandas as pd
 import quandl, math, datetime
